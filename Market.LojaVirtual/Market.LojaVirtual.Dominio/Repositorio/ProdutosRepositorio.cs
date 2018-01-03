@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Market.LojaVirtual.Dominio;
+﻿using System.Collections.Generic;
 using Market.LojaVirtual.Dominio.Entidades;
 
 namespace Market.LojaVirtual.Dominio.Repositorio
