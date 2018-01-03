@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Market.LojaVirtual.Dominio.Repositorio;
+using Market.LojaVirtual.Web.Models;
+using Market.LojaVirtual.Web;
 
 namespace Market.LojaVirtual.Web.Controllers
 {
@@ -12,15 +14,25 @@ namespace Market.LojaVirtual.Web.Controllers
         private ProdutosRepositorio _repositorio;
         public int ProdutosPorPagina = 3;
 
-        public ActionResult ListaProdutos(int pagina = 1)
+        public ViewResult ListaProdutos(int pagina = 1)
         {
             _repositorio = new ProdutosRepositorio();
-            var produtos = _repositorio.Produtos
-                .OrderBy(p => p.Descricao)
-                .Skip((pagina - 1)*ProdutosPorPagina)
-                .Take(ProdutosPorPagina);
 
-            return View(produtos);
+            ProdutosViewModel model = new ProdutosViewModel
+            {
+                Produtos = _repositorio.Produtos
+                .OrderBy(p => p.Descricao)
+                .Skip((pagina - 1) * ProdutosPorPagina)
+                .Take(ProdutosPorPagina),
+
+                Paginacao = new Paginacao
+                {
+                    PaginaAtual = pagina,
+                    ItensPorPagina = ProdutosPorPagina,
+                    ItensTotal = _repositorio.Produtos.Count()
+                }
+            };
+            return View(model);
         }
     }
 }
