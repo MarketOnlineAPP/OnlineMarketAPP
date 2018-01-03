@@ -1,0 +1,9 @@
+Market.LojaVirtual
+
+Market.LojaVirtual.Dominio
+
+Dominio - Entidades
+
+Market.LojaVirtual.Web
+
+Market.LojaVirtual.UnitTest
