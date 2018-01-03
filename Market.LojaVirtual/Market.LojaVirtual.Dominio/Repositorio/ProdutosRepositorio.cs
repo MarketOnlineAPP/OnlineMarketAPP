@@ -8,7 +8,7 @@ using Market.LojaVirtual.Dominio.Entidades;
 
 namespace Market.LojaVirtual.Dominio.Repositorio
 {
-    class ProdutosRepositorio
+    public class ProdutosRepositorio
     {
         private readonly EfDbContext _context = new EfDbContext();
 
