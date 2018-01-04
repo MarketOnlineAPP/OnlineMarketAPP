@@ -19,6 +19,7 @@ namespace Market.LojaVirtual.Web
                 defaults:new { controller = "Vitrine", action ="ListaProdutos" }
                 );
 
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

@@ -21,7 +21,7 @@ namespace Market.LojaVirtual.Web.HtmlHelpers
                     tag.AddCssClass("selected");
                     tag.AddCssClass("btn-primary");
                 }
-                tag.AddCssClass("btn-btn-default");
+                tag.AddCssClass("btn btn-default");
                 resultado.Append(tag);
             }
             return MvcHtmlString.Create(resultado.ToString());

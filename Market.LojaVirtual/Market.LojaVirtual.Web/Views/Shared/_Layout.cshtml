@@ -25,13 +25,16 @@
             </div>
         </div>
     </div>
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+<div class="row panel">
+    
+    <div id="categorias" class="col-xs-3" >Minhas Categorias</div>
+    <div id="categorias" class="col-xs-8">
+    @RenderBody()
+    <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
+    </div>
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
