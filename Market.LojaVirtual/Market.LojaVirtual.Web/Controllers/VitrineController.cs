@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using Market.LojaVirtual.Dominio.Repositorio;
 using Market.LojaVirtual.Web.Models;
 using Market.LojaVirtual.Web;
-using Market.LojaVirtual.Dominio.Entidades;
 
 namespace Market.LojaVirtual.Web.Controllers
 {
@@ -19,34 +18,24 @@ namespace Market.LojaVirtual.Web.Controllers
         {
             _repositorio = new ProdutosRepositorio();
 
-            IEnumerable<Produto> produtos = null;
-
-            if (categoria == null)
-                produtos = _repositorio.Produtos
-                    .OrderBy(p => p.Descricao)
-                    .Skip((pagina - 1) * ProdutosPorPagina)
-                    .Take(ProdutosPorPagina);
-            else
-                produtos = _repositorio.Produtos
-                        .Where(p => p.Categoria == categoria)
-                    .OrderBy(p => p.Descricao)
-                    .Skip((pagina - 1) * ProdutosPorPagina)
-                    .Take(ProdutosPorPagina);
-
             ProdutosViewModel model = new ProdutosViewModel
             {
-                Produtos = produtos,
+                Produtos = _repositorio.Produtos
+                .Where(p => categoria == null || p.Categoria == categoria)
+                .OrderBy(p => p.Descricao)
+                .Skip((pagina - 1) * ProdutosPorPagina)
+                .Take(ProdutosPorPagina),
+
                 Paginacao = new Paginacao
                 {
                     PaginaAtual = pagina,
                     ItensPorPagina = ProdutosPorPagina,
-                    ItensTotal = _repositorio.Produtos.Count()
+                    ItensTotal = categoria == null ? _repositorio.Produtos.Count() : _repositorio.Produtos.Count(e => e.Categoria == categoria)
                 },
 
                 CategoriaAtual = categoria
             };
-
-            return View("~/Views/Vitrine/ListaProdutos.cshtml", model);
+            return View(model);
         }
     }
 }

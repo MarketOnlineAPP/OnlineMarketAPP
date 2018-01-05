@@ -6,56 +6,7 @@ using System.Threading.Tasks;
 
 namespace Market.LojaVirtual.Dominio.Entidades
 {
-
-    public class Carrinho
+    class Carrinho
     {
-        private readonly List<ItemCarrinho> _itemCarrinho = new List<ItemCarrinho>();
-        //Adiciona
-        public void AdicionarItem(Produto produto, int quantidade)
-        {
-            ItemCarrinho item = _itemCarrinho.FirstOrDefault(p => p.Produto.ProdutoId == produto.ProdutoId);
-
-            if (item == null)
-            {
-                _itemCarrinho.Add(new ItemCarrinho
-                {
-                    Produto = produto,
-                    Quantidade = quantidade
-                });
-            }
-            else
-            {
-                item.Quantidade += quantidade;
-            }
-        }
-
-        //Remove
-        public void RemoverItem(Produto produto)
-        {
-            _itemCarrinho.RemoveAll(l => l.Produto.ProdutoId == produto.ProdutoId);
-        }
-    //Obter valor total
-        public decimal ObterValorTotal()
-        {
-            return _itemCarrinho.Sum(e => e.Produto.Preco * e.Quantidade);
-        }
-    //Limpar carrinho
-        public void LimparCarrinho()
-        {
-            _itemCarrinho.Clear();
-        }
-
-        //ItensCarrinho
-        public IEnumerable<ItemCarrinho> ItensCarrinho
-        {
-            get { return _itemCarrinho; }
-        }
-    }
-
-    public class ItemCarrinho
-    {
-        public Produto Produto { get; set; }
-
-        public int Quantidade { get; set; }
     }
 }
